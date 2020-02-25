@@ -22,6 +22,7 @@ class App extends Component{
                }
 
                Arrow (화살표 함수)
+
          */
         axios.get("http://localhost:3000/yearly.json").
         then((response)=>{
@@ -52,13 +53,17 @@ class App extends Component{
         default : 회색
         active : 진한 회색
      */
+    onMovieData(m)
+    {
+        this.setState({detail:m})
+    }
     render() {
         const html=this.state.movie.map((m)=>
             <div className={"col-sm-4"}>
                 <div className="panel panel-primary">
                     <div className="panel-heading">{m.title.substring(0,18)}</div>
                     <div className="panel-body">
-                        <img src={m.poster} width={"100%"}/>
+                        <img src={m.poster} width={"100%"} onClick={this.onMovieData.bind(this,m)}/>
                     </div>
                 </div>
             </div>
@@ -71,7 +76,7 @@ class App extends Component{
                     {html}
                 </div>
                 <div className={"col-sm-4"}>
-                  <MovieDetail/>
+                  <MovieDetail m={this.state.detail}/>
                 </div>
             </div>
            </Fragment>
@@ -84,6 +89,8 @@ class MovieDetail extends Component{
     render() {
         return (
             <table className={"table table-hover"}>
+
+                <tbody>
                 <tr>
                     <td className={"text-center"} width={"30%"} rowSpan={"7"}>
                         <img src={this.props.m.poster} width={"100%"}/>
@@ -121,6 +128,7 @@ class MovieDetail extends Component{
                         {this.props.m.story}
                     </td>
                 </tr>
+                </tbody>
             </table>
         )
     }
