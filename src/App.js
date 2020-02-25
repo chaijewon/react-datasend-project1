@@ -77,6 +77,7 @@ class App extends Component{
            </Fragment>
        )
     }
+
 }
 // App =====> MovieDetail (포스터를 클릭하면 => 영화한개 대한 모든정보를 props)
 class MovieDetail extends Component{
